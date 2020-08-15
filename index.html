@@ -43,7 +43,7 @@ const temp = document.querySelector('.temp');
 const stateInput = document.querySelector('#input-location');
 const icon = document.querySelector('.icon');
 function getTemp(){
-fetch('http://api.openweathermap.org/data/2.5/weather?q='+stateInput.value+'&APPID=c0a38802626abacde7774e9a067b64e3')
+fetch('https://api.openweathermap.org/data/2.5/weather?q='+stateInput.value+'&APPID=c0a38802626abacde7774e9a067b64e3')
 .then(resp => resp.json())
 .then(data => {
 stateName.innerHTML = data.name;
