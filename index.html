@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Temperature Hot</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background: url(images/bg-image.jpg) no-repeat;
+            background-size: cover;
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form class="col-md-6 m-auto py-5">
+            <div class="input-group mb-3">
+                <input type="text" id="input-location" class="form-control" placeholder="তোমার জেলার নাম ইংরেজিতে লিখ সেখানের তাপমাত্রা বলে দিব ...">
+                <div class="input-group-append">
+                    <button onclick="getTemp()" type="button" class="btn btn-danger">খোজো</button>
+                </div>
+            </div>
+        </form>
+        <div class="weather-status text-white text-center">
+            <img src="https://openweathermap.org/img/wn/02d@2x.png" alt="">
+            <h1 class="state" >এখানে জেলার নাম  দেখাবো</h1>
+            <h3><span class="temp" >তাপমাত্রা দেখাবো</span></h3>
+            <h1 class="lead">আবহাওয়া দেখাবো</h1>
+        </div>
+    </div>
+<!-- <script src="script.js"></script> -->
+  <script>
+      const stateName = document.querySelector('.state');
+const weather = document.querySelector('.lead');
+const temp = document.querySelector('.temp');
+const stateInput = document.querySelector('#input-location');
+const icon = document.querySelector('.icon');
+function getTemp(){
+fetch('http://api.openweathermap.org/data/2.5/weather?q='+stateInput.value+'&APPID=c0a38802626abacde7774e9a067b64e3')
+.then(resp => resp.json())
+.then(data => {
+stateName.innerHTML = data.name;
+weather.innerHTML = data.weather[0].description;
+temp.innerHTML = Math.round((data.main.temp) - 273.15) +'°C' ;
+})}
+  </script>
+</body>
+
+</html>
